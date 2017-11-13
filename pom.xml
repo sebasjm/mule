@@ -121,9 +121,7 @@
 
     <modules>
         <module>core</module>
-        <module>core-tests</module>
         <module>modules</module>
-        <module>tests</module>
     </modules>
 
     <properties>
@@ -235,7 +233,7 @@
         <allureReportVersion>2.3.4</allureReportVersion>
 
         <!-- Mule Snapshot Dependencies -->
-        <muleDslApiVersion>1.0.0-SNAPSHOT</muleDslApiVersion>
+        <muleDslApiVersion>1.0.0</muleDslApiVersion>
         <muleExtensionsApiVersion>1.0.0</muleExtensionsApiVersion>
         <muleHttpPolicyApiVersion>1.0.0-SNAPSHOT</muleHttpPolicyApiVersion>
         <muleMavenClientApi>1.0.0-SNAPSHOT</muleMavenClientApi>
@@ -596,7 +594,6 @@
                 <artifactId>btm</artifactId>
                 <version>${bitronixTMVersion}</version>
             </dependency>
-            <!-- For unit tests only -->
             <dependency>
                 <groupId>org.apache.derby</groupId>
                 <artifactId>derby</artifactId>
@@ -1604,7 +1601,6 @@
                         <excludes>
                             <!-- Surefire should be able to detect that classes are abstract but it seems it isn't -->
                             <exclude>**/Abstract*.*</exclude>
-                            <!-- Our tests never start with Test* but we have a lot of test helpers that match -->
                             <exclude>**/Test*.java</exclude>
                             <!-- exclude inner classes -->
                             <exclude>**/*$*</exclude>
@@ -1616,7 +1612,6 @@
                             </property>
                         </properties>
                         <systemPropertyVariables>
-                            <!-- Just propagate this variable due to surefire will not do this when forked vm for tests -->
                             <mule.freePortFinder.lockPath>${java.io.tmpdir}/mule/freePortFinder</mule.freePortFinder.lockPath>
                             <maven.projectVersion>${project.version}</maven.projectVersion>
                         </systemPropertyVariables>
